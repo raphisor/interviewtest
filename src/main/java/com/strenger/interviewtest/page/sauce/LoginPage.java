@@ -38,4 +38,8 @@ public class LoginPage extends BasePage {
     webDriver.findElement(passwordInput).sendKeys(password);
     webDriver.findElement(loginButton).click();
   }
+  
+  public void loginWithNoCredentials() {
+    webDriver.findElement(loginButton).click();
+  }
 }

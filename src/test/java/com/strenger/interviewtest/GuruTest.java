@@ -17,7 +17,7 @@ public class GuruTest extends BaseSeleniumTest {
   private LiveSeleniumProjectPage liveSeleniumProjectPage;
 
   @Test
-  public void testGuru() {
+  public void testTabHandling() {
     guruHomePage.gotoPage();
     guruHomePage.scrollToBottom();
     guruHomePage.clickImageInIframe();

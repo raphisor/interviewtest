@@ -31,7 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
-/src/main/resources/screenshots/
+/src/test/resources/screenshots/
 /src/main/resources/drivers/
 
 # Package Files #

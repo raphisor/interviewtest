@@ -8,8 +8,7 @@ import com.strenger.interviewtest.dataProvider.JsonDataProvider;
 import com.strenger.interviewtest.page.sauce.CartPage;
 import com.strenger.interviewtest.page.sauce.InventoryPage;
 import com.strenger.interviewtest.page.sauce.LoginPage;
-import com.strenger.interviewtest.pojo.user.UITestData;
-import java.util.List;
+import com.strenger.interviewtest.pojo.testdata.UITestData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 
@@ -24,31 +23,32 @@ public class ShoppingTest extends BaseSeleniumTest {
   private InventoryPage inventoryPage;
 
   @Test(dataProvider = "getDataFromJson", dataProviderClass = JsonDataProvider.class)
-  @JsonData(model = UITestData.class, filepath = "src/main/resources/testdata/orderFlow.json")
+  @JsonData(model = UITestData.class, filepath = "src/test/resources/testdata/orderFlow.json")
   public void testOrderFlow(UITestData testData) {
     loginPage.gotoPage();
     loginPage.login(testData.getUsername(), testData.getPassword());
-    List<String> itemsToBuy = List.of("Sauce Labs Backpack", "Sauce Labs Bolt T-Shirt");
-    inventoryPage.addProductsToCart(itemsToBuy);
-    assertEquals(itemsToBuy.size(), inventoryPage.getShoppingCartBadgeCount(),
+    inventoryPage.addProductsToCart(testData.getItemsToBuy());
+    int expectedBadgeCount = testData.getItemsToBuy().size();
+    assertEquals(expectedBadgeCount, inventoryPage.getShoppingCartBadgeCount(),
         "Shopping cart badge count is not as expected");
     inventoryPage.gotoShoppingCart();
     cartPage.checkout();
-    cartPage.fillOutForm("Ozzy", "Osbourne", "9999");
+    cartPage.fillOutForm(testData.getFirstName(), testData.getLastName(), testData.getZipCode());
     cartPage.finish();
     assertEquals("Thank you for your order!", cartPage.getCompleteMessage(),
         "Complete message is not as expected");
   }
 
   @Test
-  public void testLogin() {
+  public void testNoCredentialLogin() {
     inventoryPage.gotoPage();
     assertTrue(loginPage.isDisplayed(), "Login page should be displayed");
     assertTrue(loginPage.isErrorMessageDisplayed(), "Error message should be displayed");
 
-    loginPage.login("", "");
-    assertTrue(loginPage.isErrorMessageDisplayed());
-    assertEquals("Epic sadface: Username is required", loginPage.getErrorMessage());
+    loginPage.loginWithNoCredentials();
+    assertTrue(loginPage.isErrorMessageDisplayed(), "Error message should be displayed");
+    assertEquals("Epic sadface: Username is required", loginPage.getErrorMessage(),
+        "Error message test doesn't match");
   }
 
   @Test
@@ -60,5 +60,5 @@ public class ShoppingTest extends BaseSeleniumTest {
     assertTrue(inventoryPage.getFooterText().contains("2024"));
     assertTrue(inventoryPage.getFooterText().contains("Terms of Service"));
   }
-  
+
 }

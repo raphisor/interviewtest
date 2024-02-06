@@ -6,11 +6,14 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.ITestNGMethod;
 import org.testng.annotations.DataProvider;
 
-
 public class JsonDataProvider {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(JsonDataProvider.class);
 
   @DataProvider(name = "getDataFromJson")
   public Object[][] getDataFromJson(ITestNGMethod testNGMethod) {
@@ -21,9 +24,12 @@ public class JsonDataProvider {
       String filepath = jsonData.filepath();
       ObjectMapper objectMapper = new ObjectMapper();
       try {
+        LOGGER.info("Reading test data from JSON file {}", filepath);
         Object testData = objectMapper.readValue(Files.newInputStream(Paths.get(filepath)), model);
+        LOGGER.info("Successfully read test data from JSON file {}", filepath);
         return new Object[][]{{testData}};
       } catch (IOException e) {
+        LOGGER.error("Failed to read test data from JSON file {}", filepath, e);
         throw new RuntimeException("Failed to read test data from JSON file", e);
       }
     } else {
