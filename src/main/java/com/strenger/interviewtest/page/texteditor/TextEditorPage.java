@@ -49,4 +49,12 @@ public class TextEditorPage extends BasePage {
     inputField.sendKeys(text);
     webDriver.switchTo().defaultContent();
   }
+
+  public String getTextFromEditor() {
+    webDriver.switchTo().frame(0);
+    WebElement inputField = webDriver.findElement(textInputFieldBy);
+    String text = inputField.getText();
+    webDriver.switchTo().defaultContent();
+    return text;
+  }
 }

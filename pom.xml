@@ -18,6 +18,13 @@
   <properties>
     <java.version>19</java.version>
     <selenium.version>4.17.0</selenium.version>
+    <spring.boot.version>3.2.2</spring.boot.version>
+    <log4j.version>1.2.17</log4j.version>
+    <testng.version>7.9.0</testng.version>
+    <okhttp.version>4.12.0</okhttp.version>
+    <httpclient.version>4.5.14</httpclient.version>
+    <jackson.databind.version>2.13.0</jackson.databind.version>
+    <maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
   </properties>
 
   <dependencies>
@@ -30,7 +37,6 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
-
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
@@ -39,43 +45,45 @@
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
-      <version>1.2.17</version>
+      <version>${log4j.version}</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/org.testng/testng -->
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
-      <version>7.9.0</version>
-      <scope>test</scope>
+      <version>${testng.version}</version>
     </dependency>
-
+    <dependency>
+      <groupId>com.squareup.okhttp3</groupId>
+      <artifactId>okhttp</artifactId>
+      <version>${okhttp.version}</version>
+    </dependency>
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
       <version>${selenium.version}</version>
     </dependency>
-
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>${httpclient.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson.databind.version}</version>
+    </dependency>
   </dependencies>
-
 
   <build>
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <configuration>
-          <excludes>
-            <exclude>
-              <groupId>org.projectlombok</groupId>
-              <artifactId>lombok</artifactId>
-            </exclude>
-          </excludes>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.22.2</version>
+        <version>${maven.surefire.plugin.version}</version>
         <configuration>
           <suiteXmlFiles>
             <suiteXmlFile>test-suite.xml</suiteXmlFile>

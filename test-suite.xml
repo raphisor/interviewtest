@@ -2,8 +2,10 @@
 <suite name="AllTests">
   <test name="ShoppingTest">
     <classes>
+      <class name="com.strenger.interviewtest.GuruTest"/>
       <class name="com.strenger.interviewtest.ShoppingTest"/>
       <class name="com.strenger.interviewtest.TextEditorTest"/>
+      <class name="com.strenger.interviewtest.RestTest"/>
     </classes>
   </test>
 </suite>

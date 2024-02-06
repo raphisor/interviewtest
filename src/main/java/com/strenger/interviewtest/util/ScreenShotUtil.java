@@ -23,9 +23,8 @@ public class ScreenShotUtil {
     try {
       File sourceFile = this.driver.getScreenshotAs(OutputType.FILE);
       FileCopyUtils.copy(sourceFile, this.path.resolve(imgName).toFile());
-      System.out.println("Saving screenshot to " + path);
     } catch (Exception e) {
-      System.out.println("Something went wrong with screenshot capture" + e);
+      //TODO: logging
     }
   }
 }

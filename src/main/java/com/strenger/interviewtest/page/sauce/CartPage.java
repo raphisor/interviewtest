@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 @Page
 public class CartPage extends BasePage {
 
+  private static final String URL = "https://www.saucedemo.com/cart.html";
   private final By checkoutButtonBy = new ByDataTest("checkout");
   private final By fieldFirstNameBy = new ByDataTest("firstName");
   private final By fieldLastNameBy = new ByDataTest("lastName");
@@ -40,4 +41,8 @@ public class CartPage extends BasePage {
     return webDriver.findElement(completeMessageBy).getText();
   }
 
+  @Override
+  public void gotoPage() {
+    webDriver.get(URL);
+  }
 }
