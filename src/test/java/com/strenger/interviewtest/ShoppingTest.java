@@ -9,6 +9,9 @@ import com.strenger.interviewtest.page.sauce.CartPage;
 import com.strenger.interviewtest.page.sauce.InventoryPage;
 import com.strenger.interviewtest.page.sauce.LoginPage;
 import com.strenger.interviewtest.pojo.testdata.UITestData;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 
@@ -23,6 +26,8 @@ public class ShoppingTest extends BaseSeleniumTest {
   private InventoryPage inventoryPage;
 
   @Test(dataProvider = "getDataFromJson", dataProviderClass = JsonDataProvider.class)
+  @Description("Purchase process with different items")
+  @Severity(SeverityLevel.NORMAL)
   @JsonData(model = UITestData.class, filepath = "src/test/resources/testdata/orderFlow.json")
   public void testOrderFlow(UITestData testData) {
     loginPage.gotoPage();
@@ -40,6 +45,8 @@ public class ShoppingTest extends BaseSeleniumTest {
   }
 
   @Test
+  @Description("Login with no credentials")
+  @Severity(SeverityLevel.NORMAL)
   public void testNoCredentialLogin() {
     inventoryPage.gotoPage();
     assertTrue(loginPage.isDisplayed(), "Login page should be displayed");
@@ -52,6 +59,8 @@ public class ShoppingTest extends BaseSeleniumTest {
   }
 
   @Test
+  @Description("Verify footer is displayed properly")
+  @Severity(SeverityLevel.NORMAL)
   public void testFooter() {
     loginPage.gotoPage();
     loginPage.login("standard_user", "secret_sauce");

@@ -1,5 +1,6 @@
 package com.strenger.interviewtest.util;
 
+import io.qameta.allure.Step;
 import java.io.File;
 import java.nio.file.Path;
 import org.openqa.selenium.OutputType;
@@ -23,6 +24,7 @@ public class ScreenShotUtil {
   @Value("${screenshot.path}")
   private Path path;
 
+  @Step("Take screenshot with name {imgName}")
   public void takeScreenShot(final String imgName) {
     try {
       LOGGER.info("Taking screenshot with name {}", imgName);

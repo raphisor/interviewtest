@@ -2,6 +2,7 @@ package com.strenger.interviewtest.page.texteditor;
 
 import com.strenger.interviewtest.annotation.Page;
 import com.strenger.interviewtest.page.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -14,35 +15,42 @@ public class TextEditorPage extends BasePage {
   private final By underlineButtonBy = By.className("cke_button__underline");
   private final By textInputFieldBy = By.cssSelector("body > p");
 
+  @Step("Open Text Editor page")
   public void gotoPage() {
     webDriver.get(URL);
   }
 
 
+  @Step("Click underline button")
   public void clickUnderlineButton() {
     webDriver.findElement(underlineButtonBy).click();
   }
 
+  @Step("Click bold button")
   public void clickBoldButton() {
     webDriver.findElement(boldButtonBy).click();
   }
 
+  @Step("Type bold text")
   public void typeBoldText(String text) {
     clickBoldButton();
     typeText(text);
     clickBoldButton();
   }
 
+  @Step("Type italic text")
   public void typeItalicText(String text) {
     clickItalicButton();
     typeText(text);
     clickItalicButton();
   }
 
+  @Step("Click italic button")
   public void clickItalicButton() {
     webDriver.findElement(italicButtonBy).click();
   }
 
+  @Step("Type text into the editor")
   public void typeText(String text) {
     webDriver.switchTo().frame(0);
     WebElement inputField = webDriver.findElement(textInputFieldBy);
@@ -50,6 +58,7 @@ public class TextEditorPage extends BasePage {
     webDriver.switchTo().defaultContent();
   }
 
+  @Step("Get text from the editor")
   public String getTextFromEditor() {
     webDriver.switchTo().frame(0);
     WebElement inputField = webDriver.findElement(textInputFieldBy);

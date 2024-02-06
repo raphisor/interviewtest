@@ -1,5 +1,6 @@
 package com.strenger.interviewtest.page;
 
+import io.qameta.allure.Step;
 import jakarta.annotation.PostConstruct;
 import java.util.Set;
 import org.openqa.selenium.By;
@@ -22,20 +23,24 @@ public abstract class BasePage {
 
   public abstract void gotoPage();
 
+  @Step("Get page title")
   public String getTitle() {
     return webDriver.getTitle();
   }
 
+  @Step("Scroll to bottom of page")
   public void scrollToBottom() {
     JavascriptExecutor js = (JavascriptExecutor) webDriver;
     js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
   }
 
+  @Step("Hover over element")
   public void hoverOverElement(By locator) {
     Actions actions = new Actions(webDriver);
     actions.moveToElement(webDriver.findElement(locator)).perform();
   }
 
+  @Step("Click and switch to new tab")
   public void clickAndSwitchToNewTab(By locator) {
     Set<String> originalTabs = webDriver.getWindowHandles();
 
@@ -47,6 +52,7 @@ public abstract class BasePage {
         .ifPresent(handle -> webDriver.switchTo().window(handle));
   }
 
+  @Step("Close current tab")
   public void closeTab() {
     webDriver.close();
     webDriver.getWindowHandles().stream().findFirst()

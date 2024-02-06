@@ -1,5 +1,6 @@
 package com.strenger.interviewtest.service;
 
+import io.qameta.allure.Step;
 import java.io.IOException;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -18,6 +19,7 @@ public class UserService {
   private OkHttpClient okHttpClient;
   private static String BASE_URL = "https://jsonplaceholder.typicode.com";
 
+  @Step("Call GET /Users endpoint")
   public Response getUsers() throws IOException {
     String url = BASE_URL + "/users";
     Request request = new Request.Builder().url(url).build();

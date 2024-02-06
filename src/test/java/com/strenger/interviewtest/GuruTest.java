@@ -5,6 +5,9 @@ import static org.testng.Assert.assertEquals;
 
 import com.strenger.interviewtest.page.guru.GuruHomePage;
 import com.strenger.interviewtest.page.guru.LiveSeleniumProjectPage;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 
@@ -17,6 +20,8 @@ public class GuruTest extends BaseSeleniumTest {
   private LiveSeleniumProjectPage liveSeleniumProjectPage;
 
   @Test
+  @Description("iFrame and tab handling")
+  @Severity(SeverityLevel.NORMAL)
   public void testTabHandling() {
     guruHomePage.gotoPage();
     guruHomePage.scrollToBottom();
