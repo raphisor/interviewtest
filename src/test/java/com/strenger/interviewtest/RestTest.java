@@ -6,6 +6,9 @@ import static org.testng.Assert.assertTrue;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.strenger.interviewtest.pojo.user.User;
 import com.strenger.interviewtest.service.UserService;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import java.io.IOException;
 import java.util.List;
 import okhttp3.Response;
@@ -27,6 +30,8 @@ public class RestTest extends AbstractTestNGSpringContextTests {
   private static final Logger LOGGER = LogManager.getLogger(RestTest.class);
 
   @Test
+  @Description("Test GET /users")
+  @Severity(SeverityLevel.NORMAL)
   public void testGetUsers() throws IOException {
 
     Response response = userService.getUsers();

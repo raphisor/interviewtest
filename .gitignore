@@ -33,7 +33,7 @@ build/
 .vscode/
 /src/test/resources/screenshots/
 /src/main/resources/drivers/
-
+/allure-results/
 # Package Files #
 *.jar
 *.war
