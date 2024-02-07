@@ -55,7 +55,7 @@ public class InventoryPage extends BasePage {
 
   @Step("Check if footer is displayed")
   public boolean isFooterDisplayed() {
-    return webDriver.findElement(footerBy).isDisplayed();
+    return isElementDisplayed(footerBy);
   }
 
   @Step("Go to shopping cart")

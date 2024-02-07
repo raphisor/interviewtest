@@ -20,7 +20,7 @@ public class LiveSeleniumProjectPage extends BasePage {
 
   @Step("Check if page is displayed")
   public boolean isDisplayed() {
-    return webDriver.findElement(headerTitleBy).isDisplayed();
+    return isElementDisplayed(headerTitleBy);
   }
 
 }

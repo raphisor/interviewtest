@@ -3,8 +3,11 @@ package com.strenger.interviewtest.page;
 import io.qameta.allure.Step;
 import jakarta.annotation.PostConstruct;
 import java.util.Set;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
@@ -12,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 public abstract class BasePage {
+
+  private static final Logger LOGGER = LogManager.getLogger(BasePage.class);
 
   @Autowired
   protected WebDriver webDriver;
@@ -38,6 +43,15 @@ public abstract class BasePage {
   public void hoverOverElement(By locator) {
     Actions actions = new Actions(webDriver);
     actions.moveToElement(webDriver.findElement(locator)).perform();
+  }
+
+  public boolean isElementDisplayed(By locator) {
+    try {
+      return webDriver.findElement(locator).isDisplayed();
+    } catch (NoSuchElementException e) {
+      LOGGER.error("Web Element not found", e);
+      return false;
+    }
   }
 
   @Step("Click and switch to new tab")

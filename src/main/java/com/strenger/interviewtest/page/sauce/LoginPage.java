@@ -28,7 +28,7 @@ public class LoginPage extends BasePage {
 
   @Step("Check if the error message is displayed")
   public boolean isErrorMessageDisplayed() {
-    return webDriver.findElement(errorMessage).isDisplayed();
+    return isElementDisplayed(errorMessage);
   }
 
   @Step("Get the error message")
