@@ -35,7 +35,7 @@ public class RestTest extends AbstractTestNGSpringContextTests {
   public void testGetUsers() throws IOException {
 
     Response response = userService.getUsers();
-    assertEquals(response.code(), 200);
+    assertEquals(response.code(), 200, "Status code should match");
 
     List<User> users = objectMapper.readValue(response.body().string(),
         objectMapper.getTypeFactory().constructCollectionType(List.class, User.class));

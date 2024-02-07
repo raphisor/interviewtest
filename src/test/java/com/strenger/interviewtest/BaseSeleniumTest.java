@@ -1,27 +1,22 @@
 package com.strenger.interviewtest;
 
-import com.strenger.interviewtest.util.ScreenShotUtil;
+import com.strenger.interviewtest.util.AllureListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 
 @SpringBootTest(classes = InterviewtestApplication.class)
+@Listeners(AllureListener.class)
 public class BaseSeleniumTest extends AbstractTestNGSpringContextTests {
 
-  @Lazy
   @Autowired
-  protected ScreenShotUtil screenShotUtil;
-
-  @Lazy
-  @Autowired
-  public ApplicationContext applicationContext;
+  public WebDriver webDriver;
 
   @BeforeTest
   public void setup() {
@@ -31,10 +26,8 @@ public class BaseSeleniumTest extends AbstractTestNGSpringContextTests {
 
   @AfterTest
   public void tearDown() {
-    LOGGER.info("Test completed");
-    this.applicationContext
-        .getBean(WebDriver.class)
-        .quit();
+    LOGGER.info("Teardown WebDriver");
+    webDriver.quit();
   }
 
 }

@@ -32,5 +32,4 @@ public class GuruTest extends BaseSeleniumTest {
     liveSeleniumProjectPage.closeTab();
     guruHomePage.openSeleniumTutorialPage();
   }
-
 }
