@@ -20,20 +20,22 @@ import org.springframework.context.annotation.Profile;
 @Configuration
 public class RemoteWebDriverConfig {
 
+  public static final String URL = "http://localhost:4444";
+
   @Bean
   @ConditionalOnMissingBean
   @ConditionalOnProperty(name = "browser", havingValue = "chrome")
   @Primary
   public WebDriver chromeDriver() throws MalformedURLException {
     ChromeOptions chromeOptions = new ChromeOptions();
-    return new RemoteWebDriver(new URL("http://localhost:4444"), chromeOptions);
+    return new RemoteWebDriver(new URL(URL), chromeOptions);
   }
 
   @Bean
   @ConditionalOnProperty(name = "browser", havingValue = "edge")
   public WebDriver edgeDriver() throws MalformedURLException {
     EdgeOptions edgeOptions = new EdgeOptions();
-    return new RemoteWebDriver(new URL("http://localhost:4444"), edgeOptions);
+    return new RemoteWebDriver(new URL(URL), edgeOptions);
   }
 
   @Bean
@@ -41,7 +43,7 @@ public class RemoteWebDriverConfig {
   @Primary
   public WebDriver firefoxDriver() throws MalformedURLException {
     FirefoxOptions chromeOptions = new FirefoxOptions();
-    return new RemoteWebDriver(new URL("http://localhost:4444"), chromeOptions);
+    return new RemoteWebDriver(new URL(URL), chromeOptions);
   }
 
 

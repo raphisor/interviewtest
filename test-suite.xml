@@ -3,6 +3,8 @@
   <test name="UI tests">
     <classes>
       <class name="com.strenger.interviewtest.GuruTest"/>
+      <class name="com.strenger.interviewtest.TextEditorTest"/>
+      <class name="com.strenger.interviewtest.ShoppingTest"/>
     </classes>
   </test>
 </suite>

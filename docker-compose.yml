@@ -40,3 +40,9 @@ services:
       - "4442:4442"
       - "4443:4443"
       - "4444:4444"
+  interviewtest:
+    image: interviewtest:1.0
+    container_name: interviewtest-selenium
+    network_mode: host
+    depends_on:
+      - selenium-hub
