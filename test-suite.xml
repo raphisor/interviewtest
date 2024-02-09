@@ -7,4 +7,9 @@
       <class name="com.strenger.interviewtest.ShoppingTest"/>
     </classes>
   </test>
+  <test name="API tests">
+    <classes>
+      <class name="com.strenger.interviewtest.RestTest"/>
+    </classes>
+  </test>
 </suite>

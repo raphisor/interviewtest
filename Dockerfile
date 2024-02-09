@@ -17,4 +17,4 @@ COPY test-suite.xml /app/qa
 
 RUN chmod +x /app/qa/entrycommands.sh
 
-ENTRYPOINT /app/qa/entrycommands.sh
+ENTRYPOINT mvn clean test -Dspring.profiles.active=grid

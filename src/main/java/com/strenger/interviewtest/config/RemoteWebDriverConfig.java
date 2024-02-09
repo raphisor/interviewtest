@@ -23,28 +23,11 @@ public class RemoteWebDriverConfig {
   public static final String URL = "http://localhost:4444";
 
   @Bean
-  @ConditionalOnMissingBean
+  @Primary
   @ConditionalOnProperty(name = "browser", havingValue = "chrome")
-  @Primary
   public WebDriver chromeDriver() throws MalformedURLException {
-    ChromeOptions chromeOptions = new ChromeOptions();
-    return new RemoteWebDriver(new URL(URL), chromeOptions);
+    ChromeOptions options = new ChromeOptions();
+    return new RemoteWebDriver(new URL(URL), options);
   }
-
-  @Bean
-  @ConditionalOnProperty(name = "browser", havingValue = "edge")
-  public WebDriver edgeDriver() throws MalformedURLException {
-    EdgeOptions edgeOptions = new EdgeOptions();
-    return new RemoteWebDriver(new URL(URL), edgeOptions);
-  }
-
-  @Bean
-  @ConditionalOnProperty(name = "browser", havingValue = "firefox")
-  @Primary
-  public WebDriver firefoxDriver() throws MalformedURLException {
-    FirefoxOptions chromeOptions = new FirefoxOptions();
-    return new RemoteWebDriver(new URL(URL), chromeOptions);
-  }
-
 
 }
