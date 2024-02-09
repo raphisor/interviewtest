@@ -29,10 +29,15 @@ Run the following command in the project root directory to generate the Allure r
 allure serve allure-results
 ```
 
-## Notes
+# Docker
 
-The suite could be improved by
+You can run the suite with docker by running the following commands in the root directory:
+The dockerized solution currently missing the reporting feature
 
-- Dockerizing the application and running the tests in a container. Unfinished solution on
-  feature/docker branch.
-- Implementing remotedriver for running tests in selenium grid.
+```bash
+docker build -t interviewtest:1.0 .
+```
+
+```bash
+docker compose up
+```
